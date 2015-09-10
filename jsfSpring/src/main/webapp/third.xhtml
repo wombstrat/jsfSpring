@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html">
+	<f:metadata>
+		<f:viewAction action="#{indexBean.init}" onPostBack="false" />
+
+	</f:metadata>
+	<script type="text/javascript"
+		src="#{request.contextPath}/js/jquery.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$("#linkJson").click(function() {
+				$.ajax({
+					url : "#{request.contextPath}/restWebService/info",
+					dataType : "json"
+				}).then(function(data) {
+					alert(data[1].nombre + " _");
+				}).fail(function(data) {
+					alert("Error en la comunicación");
+				});
+
+			});//enviarAplicacion
+
+		});
+	</script>
+
+	<h:body>
+		<h:outputLabel>THIRD</h:outputLabel>
+		<form action="#{request.contextPath}/logout" method="post">
+			<button type="submit">Logout</button>
+			<input type="hidden" name="#{_csrf.parameterName}"
+				value="#{_csrf.token}" />
+		</form>
+		<br />
+
+		<a id="linkJson" href="#">jSON</a>
+
+	</h:body>
+
+</f:view>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html">
+	<f:metadata>
+		<f:viewAction action="#{indexBean.init}" onPostBack="false" />
+	</f:metadata>
+	<h:body>
+		<form action="#{request.contextPath}/login" method="post">
+			<input type="text" name="username" /><input type="text"
+				name="password" /> <input type="hidden"
+				name="#{_csrf.parameterName}" value="#{_csrf.token}" />
+			<button type="submit">Enviar</button>
+		</form>
+
+	</h:body>
+
+</f:view>
+</html>
